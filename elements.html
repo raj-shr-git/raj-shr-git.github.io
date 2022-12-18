@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Rajesh Sharma Blogs</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="https://drive.google.com/file/d/1nN8Pp2wezspSi2ZLhbC46A5F7N7--gvD/view" target="_blank" class="logo">My Resume</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							
+							<li><a href="index.html">My Projects</a></li>
+							<li><a href="generic.html">My Blogs</a></li>
+							<li class="active"><a href="elements.html">Industry Project</a></li>
+							
+						</ul>
+						<ul class="icons">
+							<li><a href="http://raj-shr.medium.com/" target="_blank" class="icon brands fa-medium"><span class="label">Medium</span></a></li>
+							<li><a href="https://linkedin.com/in/raj-shr" target="_blank" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="http://github.com/raj-shr-git" target="_blank" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						
+							</ul>
+					</nav>
+				<!-- Main -->
+					<div id="main">
+				
+									<h2>Prediction of Probability of preheater blockage </h2>
+									
+									<dl>
+										<dt>Background</dt>
+
+
+										<ul>
+											<p><span class="image left"><img src="images/preheater_diagram.png" height=250 alt="" /></span>
+											<b>Preheater</b> is an important stage in a cement manufacturing process, where the raw material from the previous stage(Vertical Roller Mill) which is the powdered material(mixture of clay and limestone) will be fed to the preheater inorder to <b>remove the volatile impurities.</b>
+											<p>Preheater consits of 4 cyclones and is heated from the bottom using a burner(coal/tyre as fuel). Hot air passes from bottom of the preheater to the top, whereas the raw material will flow from top to the bottom through 4 cyclones(C1,C2,C3,C4), different impurities will evaporate at different temperatures.</p>
+											Gradually these chemicals form a sticky material and get attached to the walls of the cyclone,and finally it will result in the <b>blockage of the preheater</b>.
+											If the preheater gets blocked, the entire manufacturing process should be stopped,and the preheater should be cleaned.This will impact the manufacturing process.
+
+										</ul>
+
+										
+										<dt>Problem Statement</dt>
+										<dd>
+											<p>We need to provide the <b>probability of blockage</b> and <b>features</b> which are responsible for the blockage at any given time, so that they can control and minimize the risk of the blockage.</p>
+										</dd>
+
+										<dt>Data</dt>
+
+
+										<ul><p><span class="image right"><img src="images/cement plant.jpg" alt="" height=350/></span>
+											<li><b>Temperature</b> and <b>pressure</b> were measured in each of the 4 cyclones with the help of temperature and pressure sensors <b>every minute</b>(3 temperature sensors and 3 pressure sensors in each cyclone).</li>
+											<li><b>Laboratory data</b> which is the percentage of chemical constituents of the raw materials were measured at the input of the preheater, in the 4th cyclone and at the output stage of the preheater taken <b>every hour</b>.</li>
+											<li>Data about Fuel used for burner(coal in tons per hour,tyre),fans used for cooling were recorded.</li>
+											<li><b>Blockage data</b>(Timestamp information of the blockage) for the previous 18 months which is used as the <b>target feature</b>(44 blockages were reported in the last 18 months). </li>
+									
+										</ul>
+
+										<dt>Approach</dt>
+										<ul>
+											<li>Data Preprocessing: Some of the column names which were in German language were converted to English, Unwanted characters present in the data were cleaned and data types were made appropriate.</li>
+											<li>Sensor data which was available for every minute was resampled to hourly data and merged with the laboratory data which was already available for every hour. Now all the independent variables are available in the required format. </li>
+											<li>Blockage data was merged with the above data. This is will be used as target feture.</li>
+											<li>With EDA we found out that there were some fluctuations in independant features before six hours of blockage. So all the data before six hours were labelled as blockage data(labelled as 1). So, now we have the target feature ready.</li>
+											<li>The imbalanced data was balanced using the SMOTE Technique.</li>
+											<li>Number of independant features were reduced from 220 to 40 with the help of EDA, domain knowledge, and Recursive Feature Elimination Technique.</li>
+											<li>Used the SHAPASH library to provide the feature importance for every prediction.</li>
+											<li>Building classification models by using decision tree, random forest, ADA boost, Gradient boost, Voting classifier, XGboost.</li>
+											<li>Model evaluation by using various classification metrics like precision, recall, accuracy, f1 score, ROC, AUC.</li>
+											<li>Building a complete machine learning pipeline which includes data preprocessing, feature extraction and model building.</li>	
+										</ul>
+
+										<span class="image fit"><img src="images/cement_flowchart_2.PNG" height = 600 alt="" /></span>
+									</dl>
+
+									
+		
+	</body>
+</html>
